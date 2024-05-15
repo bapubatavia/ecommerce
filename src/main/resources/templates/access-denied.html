@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="~{/fragments :: th_head}">
+</head>
+<body>
+    <header th:insert="~{/fragments :: th_header}"></header>
+    <div class="container mx-auto my-5 text-center">
+        <h1>Access Denied</h1>
+        <h4>You don't have permission to access the requested page.</h4>
+        <img th:src="@{/images/undraw_Warning.png}" class="mx-auto"  alt="">
+    </div>
+    <div class="container mx-auto my-5 text-center">
+        <a th:href="@{/}" class="btn btn-secondary p-3"><i class="fa-solid fa-house fa-2xl px-2"></i> Go Home</a>
+    </div>
+
+</body>
+</html>

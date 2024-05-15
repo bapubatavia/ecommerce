@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="~{/fragments :: th_head}">
+</head>
+<body>
+    <header th:insert="~{/fragments :: th_header}"></header>
+    <div>
+        <div class="text-center mx-0 px-0">
+            <div class="row mx-0" style="height: 500px; width: 100%;">
+              <a class="col image-wrapper border-bottom border-end border-secondary " th:style="'background: url(' + @{/images/bracelet1.jpg} + ') no-repeat center; background-size: cover;'" th:href="'/browse?category=Bracelet'">
+                <img class="second-image img-fluid" th:src="@{/images/bracelet2.jpg}" alt="Second Image">
+                <button class="image-btn">Bracelets</button>
+              </a>
+              <a class="col image-wrapper border-bottom border-end border-secondary " th:style="'background: url(' + @{/images/necklace.jpg} + ') no-repeat center; background-size: cover;'" th:href="'/browse?category=Necklace'">
+                <img class="second-image img-fluid" th:src="@{/images/necklace2.jpg}" alt="Second Image">
+                <button class="image-btn">Necklaces</button>
+              </a>
+              <a class="col image-wrapper border-bottom border-end border-secondary " th:style="'background: url(' + @{/images/earrings1.jpg} + ') no-repeat center; background-size: cover;'" th:href="'/browse?category=Earring'">
+                <img class="second-image img-fluid" th:src="@{/images/earrings2.jpg}" alt="Second Image">
+                <button class="image-btn">Earrings</button>
+              </a>
+              <a class="col image-wrapper border-bottom border-secondary " th:style="'background: url(' + @{/images/rings1.jpg} + ') no-repeat center; background-size: cover;'" th:href="'/browse?category=Ring'">
+                <img class="second-image img-fluid" th:src="@{/images/rings2.jpg}" alt="Second Image">
+                <button class="image-btn">Rings</button>
+              </a>                                                      
+            </div>
+        </div>
+    </div>    
+    <div class="container my-3" >
+        <div class="row pb-3" style="height: 500px;">
+          <div class="col">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container py-5 ">
+                  <h1 class="display-5">Explore The Jeweler: Where Excellency Resides</h1>
+                  <br>
+                  <p class="fs-5">From Abu Dhabi to you, The Jeweler brings forth a legacy of craftsmanship and luxury. Every piece of jewelry we offer is a testament to our commitment to excellence. Welcome to a world where beauty meets tradition, where each gem tells a story of elegance and heritage.</p>
+                </div>
+            </div>
+          </div>
+          <div class="col" th:style="'background: url(' + @{/images/shop.jpg} + ') no-repeat center; background-size: cover;'">
+          </div>
+        </div>
+    </div>
+    <div th:insert="~{/fragments :: th_footer}"></div>
+</body>
+</html>

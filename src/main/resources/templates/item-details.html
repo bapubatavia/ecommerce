@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="~{/fragments :: th_head}">
+</head>
+<body>
+    <header th:insert="~{/fragments :: th_header}"></header>
+    <script>
+        function changeMainImage(imageData) {
+            document.getElementById('mainImageId').src = 'data:image/jpeg;base64,' + imageData;
+        }
+    </script>
+    <div class="container">
+        <div class="row my-4">
+            <div class="col-2 mb-2">
+                <div>
+                    <img th:each="additionalImage : ${item.base64AdditionalPictures}" th:src="'data:image/jpeg;base64,' + ${additionalImage}" alt="main image mini" class="img-thumbnail"  style="height: 200px; width: 200px;" th:attr="data-image-data=${additionalImage}" onclick="changeMainImage(this.getAttribute('data-image-data'));">
+
+                    <!-- <img th:each="additionalImage : ${item.additionalPictures}" th:src="'data:image/jpeg;base64,' + ${additionalImage}" alt="main image mini" class="img-thumbnail"  style="height: 200px; width: 200px;" th:onclick="'changeMainImage(\'' + ${additionalImage} + '\');'"> -->
+                </div>
+            </div>
+            <div class="mb-3 col-6">
+                <div class="row">
+                    <img th:src="'data:image/jpeg;base64,' + ${item.base64Image}" alt="main image" class="img-fluid border p-0" style="height: 800px; width: 800px;" id="mainImageId">
+                </div>
+            </div>  
+            <div class="col-4">
+                <div class="container border py-3">
+                    <h1 class="card-title" th:text="${item.name}"></h1>
+                    <h2 class="card-text" th:text="'$' + ${item.price}"></h2>
+                </div>
+                <button type="submit" class="btn p-3 addToCartBtn border justify-content-start" style="width: 100%;" th:data-url="'/user/add-to-cart?id=' + ${item.id}" sec:authorize="!hasAuthority('[ROLE_ADMIN]')">
+                    <i class="fa-solid fa-cart-shopping fa-2xl"></i>
+                    <h3 class="text-body-secondary">Add to cart</h3>
+                </button>
+            </div>                                              
+        </div>
+    </div>
+    <div th:insert="~{/fragments :: th_footer}"></div>
+</body>
+</html>

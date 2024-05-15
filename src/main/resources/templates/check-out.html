@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="~{/fragments :: th_head}">
+  <link href="checkout.css" rel="stylesheet">
+</head>
+<body>
+    <header th:insert="~{/fragments :: th_header}"></header>
+    <div class="container">
+      <main>
+        <div class="row g-5 my-5">
+          <div class="col-md-5 col-lg-4 order-md-last">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+              <span class="text-primary">Your cart</span>
+              <span class="badge bg-primary rounded-pill" th:text="${cartCount}"></span>
+            </h4>
+            <ul class="list-group mb-3">
+              <li class="list-group-item d-flex justify-content-between lh-sm" th:each="jewelry, stat : ${cart.cartJewelry}">
+                <div>
+                  <h6 class="my-0" th:text="${jewelry.jewelry.name}"></h6>
+                  <small class="text-body-secondary" th:text="'Qty: ' + ${jewelry.quantityInOrder}"></small>
+                </div>
+                <span class="text-body-secondary" th:text="'$'+ ${jewelry.jewelry.price} + 'x ' + ${jewelry.quantityInOrder} +'= ' + '$' + ${jewelry.quantityInOrder * jewelry.jewelry.price}"></span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between">
+                <span>Delivery Fee (USD)</span>
+                <small th:text="'$20'"></small>
+              </li>
+              <li class="list-group-item d-flex justify-content-between">
+                <span>Total (USD)</span>
+                <strong th:text="'$' + ${cart.subTotal + 20}"></strong>
+              </li>
+            </ul>
+
+            <form class="card p-2">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Promo code">
+                <button type="submit" class="btn btn-secondary">Redeem</button>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-7 col-lg-8">
+            <h4 class="mb-3">Billing address</h4>
+            <form class="needs-validation" novalidate th:action="@{/user/process-order}" method="post">
+              <div class="row g-3">
+                <div class="col-sm-6">
+                  <label for="firstName" class="form-label">First name</label>
+                  <input type="text" class="form-control" id="firstName" name="firstName" required>
+                  <div class="invalid-feedback">
+                    Valid first name is required.
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <label for="lastName" class="form-label">Last name</label>
+                  <input type="text" class="form-control" id="lastName" name="lastName" required>
+                  <div class="invalid-feedback">
+                    Valid last name is required.
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <label for="address" class="form-label">Address</label>
+                  <input type="text" class="form-control" id="addressPartOne" name="addressPartOne" placeholder="1234 Main St" required>
+                  <div class="invalid-feedback">
+                    Please enter your shipping address. 
+                  </div>
+                </div>
+
+                <div class="col-md-5">
+                  <label for="country" class="form-label">Country</label>
+                  <select class="form-select" id="addressPartTwo" name="addressPartTwo" required>
+                    <option value="">Choose...</option>
+                    <option>Rwanda</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Please select a valid country.
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <label for="state" class="form-label">State</label>
+                  <select class="form-select" id="addressPartThree" name="addressPartThree" required>
+                    <option value="">Choose...</option>
+                    <option>Kigali</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Please provide a valid state.
+                  </div>
+                </div>
+
+                <div class="col-md-3">
+                  <label for="zip" class="form-label">Zip</label>
+                  <input type="text" class="form-control" id="addressPartFour" name="addressPartFour" required>
+                  <div class="invalid-feedback">
+                    Zip code required.
+                  </div>
+                </div>
+              </div>
+
+              <hr class="my-4">
+
+              <h4 class="mb-3">Payment</h4>
+
+              <div class="my-5">
+                <div class="form-check">
+                  <input id="debit" name="paymentMethod" type="radio" value="debitCard" class="form-check-input" required>
+                  <label class="form-check-label" for="debit">Debit card</label>
+                </div>
+                <div class="form-check">
+                  <input id="momo" name="paymentMethod" type="radio" value="mobileMoney" class="form-check-input" required>
+                  <label class="form-check-label" for="momo">Mobile Money</label>
+                </div>
+              </div>
+
+              <div class="row gy-3" id="debitCardFields">
+                <div class="col-md-6">
+                  <label for="cc-name" class="form-label">Name on card</label>
+                  <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                  <small class="text-body-secondary">Full name as displayed on card</small>
+                  <div class="invalid-feedback">
+                    Name on card is required
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="cc-number" class="form-label">Credit card number</label>
+                  <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                  <div class="invalid-feedback">
+                    Credit card number is required
+                  </div>
+                </div>
+
+                <div class="col-md-3">
+                  <label for="cc-expiration" class="form-label">Expiration</label>
+                  <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                  <div class="invalid-feedback">
+                    Expiration date required
+                  </div>
+                </div>
+
+                <div class="col-md-3">
+                  <label for="cc-cvv" class="form-label">CVV</label>
+                  <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                  <div class="invalid-feedback">
+                    Security code required
+                  </div>
+                </div>
+              </div>
+
+              <div class="row gy-3" id="mobileMoneyFields">
+                <div class="col-md-6">
+                  <label for="mm-number" class="form-label">Mobile Money Number</label>
+                  <input type="text" class="form-control" id="mm-number" placeholder="" required>
+                  <small class="text-body-secondary">Ex: 0780123456</small>
+                  <div class="invalid-feedback">
+                    Phone number required
+                  </div>
+                </div>
+              </div>
+              <hr class="my-4">
+
+              <button class="w-100 btn btn-primary btn-lg" type="submit">Process checkout</button>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+    <div th:insert="~{/fragments :: th_footer}"></div>
+
+
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/checkout.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Call the toggle function initially to set the initial state
+        togglePaymentFields();
+
+        // Add event listeners to the radio buttons to toggle payment fields
+        document.getElementById('debit').addEventListener('change', togglePaymentFields);
+        document.getElementById('momo').addEventListener('change', togglePaymentFields);
+      });
+
+      function togglePaymentFields() {
+        var debit = document.getElementById('debit');
+        var momo = document.getElementById('momo');
+        var debitCardFields = document.getElementById('debitCardFields');
+        var mobileMoneyFields = document.getElementById('mobileMoneyFields');
+
+        if (debit.checked) {
+          debitCardFields.style.display = 'block';
+          mobileMoneyFields.style.display = 'none';
+        } else if (momo.checked) {
+          debitCardFields.style.display = 'none';
+          mobileMoneyFields.style.display = 'block';
+        } else { // Added this else block
+          debitCardFields.style.display = 'none';
+          mobileMoneyFields.style.display = 'none';
+        }
+      }
+    </script>
+  </body>
+</html>

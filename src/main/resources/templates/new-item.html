@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="~{/fragments :: th_head}">
+</head>
+<body>
+    <header th:insert="~{/fragments :: th_header}"></header>
+    <div class="container my-5 mx-auto">   
+        <div class="row mt-2">
+            <div th:if="${param.success}" class="col-sm-8">
+                   <p class="alert alert-info">Added item!<br>Item added successfully!</p>
+            </div>
+        </div> 
+        <div class="row mt-2">
+            <div th:if="${param.fail}" class="col-sm-8">
+               <p class="alert alert-danger">Adding item failed. Please try again.</p>
+            </div>
+        </div>
+        
+        
+        <div class="m-5 text-center">
+            <h2>New Jewelry</h2>
+        </div>
+
+        <form th:action="@{/product/add-item}" method="post" class="mx-5 px-5 row g-3 needs-validation" enctype="multipart/form-data">
+            <div class="mb-3 col-md-6">
+                <label for="name" class="col-form-label">Name</label>
+                <input type="text" required autofocus="autofocus" id="name" class="form-control" name="name">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="categoryPicked" class="col-form-label">Category</label>
+			    <select id="categoryPicked" class="form-select" name="categoryPicked" th:value="${categoryPicked}" required>
+                    <option selected>Necklace</option>
+                    <option>Bracelet</option>
+                    <option>Ring</option>
+                    <option>Earring</option>
+                </select>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="price" class="col-form-label">Price</label>
+                <input type="number" required autofocus="autofocus" id="price" class="form-control" name="price">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="quantityStock" class="col-form-label">Quantity in stock</label>
+                <input type="number" required autofocus="autofocus" id="quantityStock" class="form-control" name="quantityStock">
+            </div> 
+            <div class="mb-3 col-md-6">
+                <label for="mainImage" class="col-form-label">Main display image</label>
+                <input type="file" required autofocus="autofocus" id="mainImage" class="form-control" name="mainImage" accept=".jpg, .jpeg, .png">
+            </div> 
+            <div class="mb-3 col-md-6">
+                <label for="additionalImages" class="col-form-label">3 additional images*</label>
+                <input type="file" required autofocus="autofocus" id="additionalImages" class="form-control" name="additionalImages" accept=".jpg, .jpeg, .png" multiple>
+                <div class="mt-2 mb-5 small">*Select all 3 images at the same time</div>
+            </div>                                   
+            <div class="text-center">
+                <button type="submit" class="btn btn-success">Add Product</button>
+            </div>
+        </form>
+    </div>
+    <div th:insert="~{/fragments :: th_footer}"></div>
+</body>
+</html>

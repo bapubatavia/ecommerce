@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="~{/fragments :: th_head}">
+</head>
+<body>
+    <header th:insert="~{/fragments :: th_header}"></header>
+    <div class="container mt-5 py-3">
+      <h1>My Cart</h1>
+      <div class=" container mx-5">
+        <div class="row my-3 p-4">
+          <div class="card col-12">
+            <div class="card-footer py-3 mx-1 row" th:each="cj : ${cart.cartJewelry}" style="background-color: white;">
+                <div class="col-2">
+                  <img th:src="'data:image/jpeg;base64,' + ${cj.jewelry.base64Image}" class="card-img-top object-fit-cover" alt="">
+                </div>
+                <div class="col-8 ">
+                  <h4 class="py-2" th:text="${cj.jewelry.name}"></h4>
+                  <p class="card-text fs-5" th:text="'Item Price: $' + ${cj.jewelry.price}"></p>
+                  <form th:action="@{/api/cart/update}" method="post">
+                    <input type="hidden" name="id" th:value="${cart.id}">
+                    <input type="hidden" name="cj" th:value="${cj.id}">
+                    <input type="number" class="form-control" style="width: 10%;" name="quantity" th:placeholder="${cj.quantityInOrder}" min="1" max="4">
+                    <button class="btn btn-secondary mt-2 px-3" type="submit">Set</button>
+
+                  </form>
+                  <form th:action="@{/api/cart/delete}" method="post">
+                    <input type="hidden" name="id" th:value="${cart.id}">
+                    <input type="hidden" name="cj" th:value="${cj.id}">
+                    <button class="btn btn-danger mt-2 px-3" type="submit">Delete</button>
+                  </form>
+                  <!-- <input type="number" class="form-control" style="width: 10%;" id="quantity" name="quantity" th:placeholder="${cj.quantityInOrder}" min="1" max="4"> -->
+                  <!-- <button class="btn btn-secondary mt-2 px-3" type="button"  th:data-url="'/api/cart/update?id=' + ${cart.id} + '&cj=' + ${cj.id} + '&quantity= + document.getElementById('quantity').value">Set</button> -->
+                </div>
+            </div>
+            <div class="card-footer py-3" style="background-color: white;">
+              <!-- <h5 class="card-title col-6" th:text="'Order status: ' + ${order.status}"></h5> -->
+              <h5 class="card-title col-6" th:text="'Order Total: $' + ${cart.subTotal}"></h5>
+            </div>            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div th:insert="~{/fragments :: th_footer}"></div>
+</body>
+</html>

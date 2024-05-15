@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="~{/fragments :: th_head}">
+</head>
+<body>
+    <header th:insert="~{/fragments :: th_header}"></header>
+    <div class="container col-md-offset-3 col-md-8 mt-lg-5">
+        <div class="row mt-2">
+            <div th:if="${param.fail}" class="col-sm-8">
+               <p class="alert alert-danger">Registration failed, please try again.</p>
+            </div>
+        </div>
+        
+        <div class="m-5 text-center">
+            <h2>User Registration</h2>
+        </div>
+        <form th:action="@{/auth/register-user}" method="post" th:object="${user}" class="row my-5 text-center">
+            <div class="mb-3 row ">
+                <label for="firstName" class="col-2 col-form-label">First Name</label>
+                <div class="col-4">
+                  <input type="text" required autofocus="autofocus" id="firstName" class="form-control" name="firstName">
+                </div>
+                <label for="lastName" class="col-2 col-form-label">Last Name</label>
+                <div class="col-4">
+                  <input type="text" required autofocus="autofocus" id="lastName" class="form-control" name="lastName">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="email" class="col-2 col-form-label">Email</label>
+                <div class="col-4">
+                  <input type="text" required autofocus="autofocus" id="email" class="form-control" placeholder="eg: email@example.com" name="email">
+                </div>
+                <label for="password" class="col-2 col-form-label">Password</label>
+                <div class="col-4">
+                  <input type="password" required autofocus="autofocus" id="password" class="form-control" name="password">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="phoneNo" class="col-2 col-form-label">Phone Number</label>
+                <div class="col-4">
+                  <input type="text" required autofocus="autofocus" id="phoneNo" class="form-control" placeholder="eg: 0781234567" name="phoneNo">
+                </div>
+                <label for="address" class="col-2 col-form-label">Address</label>
+                <div class="col-4">
+                  <input type="text" required autofocus="autofocus" id="address" class="form-control" name="address">
+                </div>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-success mt-3">Register</button>
+                <div class="mt-2 mb-2">Alread registered? <a th:href="@{/login}">
+                    Login here.
+                </a> </div>
+            </div>
+        </form>
+    </div>    
+    <div th:insert="~{/fragments :: th_footer}"></div>
+</body>
+</html>
