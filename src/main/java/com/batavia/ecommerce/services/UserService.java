@@ -26,7 +26,7 @@ public class UserService implements UserServiceInterface {
 
     @Override
     public User registerUser(RegistrationRequest registration) {
-        List<Role> roles = Arrays.asList(Role.ROLE_ADMIN);
+        List<Role> roles = Arrays.asList(Role.ROLE_USER);
         var user = new User(registration.getFirstName(), registration.getLastName(), registration.getEmail(), passwordEncoder.encode(registration.getPassword()), roles, registration.getPhoneNo(), registration.getAddress());
         return userRepo.save(user);
     }
