@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head th:insert="~{/fragments :: th_head}">
+<head th:insert="~{fragments :: th_head}">
 </head>
 <body>
-    <header th:insert="~{/fragments :: th_header}"></header>
+    <header th:insert="~{fragments :: th_header}"></header>
     <div class="container col-md-offset-3 col-md-8 mt-lg-5">
         <div class="row mt-2">
             <div th:if="${param.fail}" class="col-sm-8">
@@ -53,6 +53,6 @@
             </div>
         </form>
     </div>    
-    <div th:insert="~{/fragments :: th_footer}"></div>
+    <div th:insert="~{fragments :: th_footer}"></div>
 </body>
 </html>

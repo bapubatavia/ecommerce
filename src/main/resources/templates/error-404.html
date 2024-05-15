@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head th:insert="~{/fragments :: th_head}">
+<head th:insert="~{fragments :: th_head}">
 </head>
 <body>
-    <header th:insert="~{/fragments :: th_header}"></header>
+    <header th:insert="~{fragments :: th_header}"></header>
     <div class="container mx-auto my-5 text-center">
         <h1 class="fs-1">Error: 404 </h1>
         <h4>Page not found!</h4>
@@ -12,6 +12,7 @@
     <div class="container mx-auto my-5 text-center">
         <a th:href="@{/}" class="btn btn-secondary p-3"><i class="fa-solid fa-house fa-2xl px-2"></i> Go Home</a>
     </div>
+    <div th:insert="~{fragments :: th_footer}"></div>
 
 </body>
 </html>
