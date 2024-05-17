@@ -94,7 +94,7 @@ public class CartController {
             
         }
 
-        redirectAttributes.addAttribute("errorMessage", "Registration failed. Please try again.");
+        redirectAttributes.addAttribute("successMessage", "Update quantity successfully!");
         return ResponseEntity.status(HttpStatus.FOUND).header("Location", "/my-cart?success").build();  
     }
 
@@ -144,8 +144,8 @@ public class CartController {
             
         }
 
-        redirectAttributes.addAttribute("errorMessage", "Registration failed. Please try again.");
-        return ResponseEntity.status(HttpStatus.FOUND).header("Location", "/my-cart?success").build();  
+        redirectAttributes.addAttribute("errorMessage", "Cart modification failed. Please try again.");
+        return ResponseEntity.status(HttpStatus.FOUND).header("Location", "/my-cart?fail").build();  
     }
 
 

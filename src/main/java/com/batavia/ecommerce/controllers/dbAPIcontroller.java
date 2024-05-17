@@ -91,12 +91,12 @@ public class dbAPIcontroller {
         }
         try {
 
-            redirectAttributes.addFlashAttribute("Message", "Item added successfully!");
+            redirectAttributes.addFlashAttribute("Message", "Item updated successfully!");
             jewelryService.updateItem(jewelryDTO);
             return ResponseEntity.status(HttpStatus.FOUND).header("Location", "/admin/product-list?success").build();         
         } catch (Exception e) {
             e.printStackTrace();
-            redirectAttributes.addAttribute("errorMessage", "Adding item failed. Please try again.");
+            redirectAttributes.addAttribute("errorMessage", "Updating item failed. Please try again.");
             return ResponseEntity.status(HttpStatus.FOUND).header("Location", "/admin/product-list?fail").build();      
         }
 

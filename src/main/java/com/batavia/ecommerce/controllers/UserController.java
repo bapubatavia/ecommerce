@@ -194,13 +194,13 @@ public class UserController {
                     
                     jewelryService.updateItem(jewelryService.convertToDTO(jewelry));
                 };
-                redirectAttributes.addFlashAttribute("Message", "Registration successful! Please log in to continue.");
+                redirectAttributes.addFlashAttribute("Message", "Order successful! You can now continue shopping.");
                 return ResponseEntity.status(HttpStatus.FOUND).header("Location", "/browse?success").build();         
             } catch (Exception e) {
                 e.printStackTrace();     
             }
         }
-        redirectAttributes.addAttribute("errorMessage", "Registration failed. Please try again.");
+        redirectAttributes.addAttribute("errorMessage", "Order processing failed. Please try again.");
         return ResponseEntity.status(HttpStatus.FOUND).header("Location", "/browse?fail").build(); 
 
 
