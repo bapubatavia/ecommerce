@@ -288,7 +288,7 @@
                           dropdownMenu.innerHTML = ''; //remove cart dropdown menu content
                           data.jewelryList.forEach(jewelry =>{
                             const menuItem = document.createElement('li');
-                            menuItem.innerHTML = `<a class="dropdown-item" th:href="@{#}">Item: ${jewelry.jewelry.name} <br> Price: ${jewelry.jewelry.price} <br> Qty: ${jewelry.quantityInOrder}</a>`;
+                            menuItem.innerHTML = `<a class="dropdown-item" th:href="@{#}">Item: ${jewelry.jewelry.name} <br> Price: $${jewelry.jewelry.price} <br> Qty: ${jewelry.quantityInOrder}</a>`;
                             dropdownMenu.append(menuItem);
                           })
 
