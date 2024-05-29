@@ -4,20 +4,6 @@
 </head>
 <body>
     <header th:insert="~{fragments :: th_header}"></header>
-    <div class="container my-5 mx-auto justify-content-center text-center">
-      <div class="row mt-2 justify-content-center">
-          <div th:if="${param.success}" class="col-sm-8">
-                 <p class="alert alert-info">Order processing was successful! You can now continue shopping with us.</p>
-          </div>
-      </div>
-  </div>
-  <div class="container my-5 mx-auto justify-content-center text-center">
-    <div class="row mt-2 justify-content-center">
-        <div th:if="${param.fail}" class="col-sm-8">
-               <p class="alert alert-info">Order processing failed. please try again.</p>
-        </div>
-    </div>
-</div>
     <div class="container">
         <div class="text-center">
             <div class="row">
@@ -34,6 +20,20 @@
                 Rings
               </a>                                                      
             </div>
+        </div>
+        <div class="container my-5 mx-auto justify-content-center text-center">
+          <div class="row mt-2 justify-content-center">
+              <div th:if="${param.success}" class="col-sm-8">
+                     <p class="alert alert-info">Order processing was successful! You can now continue shopping with us.</p>
+              </div>
+          </div>
+        </div>
+        <div class="container my-5 mx-auto justify-content-center text-center">
+          <div class="row mt-2 justify-content-center">
+            <div th:if="${param.fail}" class="col-sm-8">
+                   <p class="alert alert-info">Order processing failed. please try again.</p>
+            </div>
+          </div>
         </div>
     </div>    
     <div class="container mt-5 py-3 rounded" style="background-color: rgb(210, 210, 210);">
